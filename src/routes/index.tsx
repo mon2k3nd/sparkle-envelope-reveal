@@ -159,7 +159,7 @@ function WeddingInvitation() {
           <div className="intro-finale-shade absolute inset-0" />
           <div className="absolute inset-x-0 bottom-[9%] text-center">
             <p className="text-[10px] uppercase tracking-[.32em]">03 · 10 · 2026</p>
-            <p className="mt-3 font-display text-5xl sm:text-7xl">Thảo My <span className="text-secondary">&</span> Xuân Tú</p>
+            <p className="mt-3 px-4 font-display text-4xl sm:text-7xl">Thảo My <span className="text-secondary">&</span> Xuân Tú</p>
           </div>
         </div>
       </>}
