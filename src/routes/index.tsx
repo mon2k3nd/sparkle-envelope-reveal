@@ -30,6 +30,12 @@ const [img1, , img3, img4, img5, img6, img7, img8, img9] = [a1, a2, a3, a4, a5, 
 const gallery = [img1, img3, img4, img5, img6, img7, img8, img9];
 const storyPhoto = [img4, img5, img6, img7];
 const weddingDate = new Date("2026-10-03T10:00:00+07:00").getTime();
+const introStory = [
+  "Giữa hàng triệu cuộc gặp gỡ,",
+  "có hai ánh mắt đã chọn dừng lại.",
+  "Từ hai hành trình riêng,",
+  "mình viết nên một câu chuyện chung.",
+];
 
 function IconButton({ label, onClick, children, className = "" }: { label: string; onClick: () => void; children: React.ReactNode; className?: string }) {
   return <Button type="button" variant="glass" size="iconLg" aria-label={label} title={label} onClick={onClick} className={className}>{children}</Button>;
@@ -101,7 +107,7 @@ function WeddingInvitation() {
     if (opening) return;
     setOpening(true);
     try { await audioRef.current?.play(); setPlaying(true); } catch { setPlaying(false); }
-    window.setTimeout(() => setOpened(true), 16800);
+    window.setTimeout(() => setOpened(true), 17000);
   }
   async function toggleMusic() {
     if (!audioRef.current) return;
@@ -143,23 +149,25 @@ function WeddingInvitation() {
       {opening && <>
         <Button type="button" variant="ghost" onClick={() => setOpened(true)} className="intro-skip absolute right-4 top-[max(1rem,env(safe-area-inset-top))] z-50 text-primary-foreground/70 hover:text-primary-foreground">Bỏ qua</Button>
         <div className="intro-grain absolute inset-0 z-10" />
-        <div className="intro-story absolute inset-0 z-20 grid place-items-center px-8 text-center">
-          <p className="story-line story-one font-display text-3xl italic leading-relaxed sm:text-5xl">Giữa hàng triệu cuộc gặp gỡ…</p>
-          <p className="story-line story-two font-display text-3xl italic leading-relaxed sm:text-5xl">có hai ánh mắt<br/>đã chọn dừng lại.</p>
-          <p className="story-line story-three font-display text-3xl italic leading-relaxed sm:text-5xl">Từ hai hành trình riêng…</p>
-          <p className="story-line story-four font-display text-3xl italic leading-relaxed sm:text-5xl">mình viết nên<br/>một câu chuyện chung.</p>
+        <div className="intro-story absolute inset-0 z-20 flex items-center justify-center px-7">
+          <div className="typewriter-story w-full max-w-3xl font-display text-[1.75rem] italic leading-[1.55] sm:text-5xl sm:leading-[1.45]">
+            {introStory.map((line, lineIndex) => {
+              const previousCharacters = introStory.slice(0, lineIndex).reduce((sum, item) => sum + item.length, 0);
+              return <p key={line} className="typewriter-line">
+                {Array.from(line).map((character, characterIndex) => <span key={`${lineIndex}-${characterIndex}`} className="typewriter-character" style={{ animationDelay: `${0.75 + (previousCharacters + characterIndex) * 0.082}s` }}>{character === " " ? "\u00a0" : character}</span>)}
+              </p>;
+            })}
+            <span aria-hidden className="typewriter-caret" />
+          </div>
         </div>
-        <div aria-hidden className="flying-gallery absolute inset-0 z-30">
-          <span className="flying-photo flying-one"><img src={img4} alt="" /></span>
-          <span className="flying-photo flying-two"><img src={img6} alt="" /></span>
-          <span className="flying-photo flying-three"><img src={img8} alt="" /></span>
-        </div>
-        <div className="intro-finale absolute inset-0 z-40 overflow-hidden">
-          <img src={img1} alt="Thảo My và Xuân Tú" className="h-full w-full object-cover object-[50%_30%]" />
+        <div className="intro-finale absolute inset-0 z-40 overflow-hidden bg-foreground">
+          <img src={img1} alt="Thảo My và Xuân Tú" className="hero-photo absolute inset-0 h-full w-full object-cover object-[50%_30%]" />
           <div className="intro-finale-shade absolute inset-0" />
-          <div className="absolute inset-x-0 bottom-[9%] text-center">
-            <p className="text-[10px] uppercase tracking-[.32em]">03 · 10 · 2026</p>
-            <p className="mt-3 px-4 font-display text-4xl sm:text-7xl">Thảo My <span className="text-secondary">&</span> Xuân Tú</p>
+          <div className="relative mx-auto flex min-h-[100svh] max-w-5xl flex-col items-center justify-end px-5 pb-12 text-center text-primary-foreground">
+            <p className="mb-4 text-[10px] uppercase tracking-[.3em] text-primary-foreground/85">03 · 10 · 2026</p>
+            <p className="font-display text-[3.6rem] leading-[.9] sm:text-8xl">Thảo My<br/><span className="text-secondary">&</span> Xuân Tú</p>
+            <p className="mt-6 font-display text-lg italic leading-[2]">Hai con người,<br/>hai hành trình,<br/>một đích đến.</p>
+            <span aria-hidden className="scroll-hint mt-8 block h-12 w-px text-primary-foreground/70"><i /></span>
           </div>
         </div>
       </>}
