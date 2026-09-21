@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Karla", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +61,38 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sky-soft: var(--sky-soft);
+  --color-peach-soft: var(--peach-soft);
+  --color-paper: var(--paper);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.5rem;
+  --background: oklch(0.9771 0.0115 37.42);
+  --foreground: oklch(0.3531 0.0389 222.2);
+  --card: oklch(0.995 0.006 37.42);
+  --card-foreground: oklch(0.3531 0.0389 222.2);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.5931 0.1531 13.98);
+  --primary-foreground: oklch(0.9771 0.0115 37.42);
+  --secondary: oklch(0.7971 0.091 24.31);
+  --secondary-foreground: oklch(0.3531 0.0389 222.2);
+  --muted: oklch(0.945 0.028 30);
+  --muted-foreground: oklch(0.49 0.035 222.2);
+  --accent: oklch(0.7 0.13 18);
+  --accent-foreground: oklch(0.9771 0.0115 37.42);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.88 0.04 24);
+  --input: oklch(0.91 0.03 24);
+  --ring: oklch(0.5931 0.1531 13.98);
+  --sky-soft: oklch(0.955 0.022 215);
+  --sky: oklch(0.82 0.07 215);
+  --peach-soft: oklch(0.93 0.045 24.31);
+  --peach: oklch(0.7971 0.091 24.31);
+  --ink: oklch(0.3531 0.0389 222.2);
+  --paper: oklch(0.9771 0.0115 37.42);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +151,211 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
   }
+
+  html { scroll-behavior: smooth; }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; }
+
+  button, a, input, textarea, select { outline-color: var(--color-ring); }
 }
+
+@keyframes driftDown {
+  from { transform: translate3d(0, -12vh, 0) rotate(0deg); opacity: 0; }
+  15% { opacity: .55; }
+  to { transform: translate3d(28px, 112vh, 0) rotate(280deg); opacity: 0; }
+}
+
+@keyframes letterIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroReveal {
+  from { opacity: .65; transform: scale(1.045); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes coverFade {
+  0%, 88% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes cardRise {
+  0%, 8% { transform: translate3d(0,0,0) rotate(-.35deg); }
+  15% { transform: translate3d(0,1%,0) rotate(-.45deg); }
+  58% { transform: translate3d(0,-61%,0) rotate(.2deg); }
+  72%, 88% { transform: translate3d(0,-64%,0) rotate(0deg) scale(1.015); opacity: 1; }
+  100% { transform: translate3d(0,-64%,0) rotate(0deg) scale(1.015); opacity: 0; }
+}
+
+@keyframes envelopeSettle {
+  0%, 72% { transform: translateY(0); opacity: 1; }
+  88% { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+@keyframes flapOpen {
+  0%, 8% { transform: rotateX(0deg); }
+  68% { transform: rotateX(172deg); }
+  100% { transform: rotateX(180deg); }
+}
+
+@keyframes sealRelease {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  30% { transform: translate(-50%, -50%) scale(.94) rotate(-3deg); }
+  62% { opacity: 1; transform: translate(-50%, -47%) scale(1.02) rotate(2deg); }
+  100% { opacity: 0; transform: translate(-50%, 18%) scale(.92) rotate(8deg); }
+}
+
+@keyframes envelopeAwaken { 0% { transform: rotate(0deg) translateY(0); } 45% { transform: rotate(-.35deg) translateY(-2px); } 100% { transform: rotate(0deg) translateY(0); } }
+@keyframes photoReveal { 0%,78% { opacity: 0; transform: scale(1.025); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes shadeReveal { 0%,80% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes whisperAway { 0%,20% { opacity: 1; transform: translateY(0); } 44%,100% { opacity: 0; transform: translateY(-18px); filter: blur(6px); } }
+@keyframes glint { 0%,30% { transform: translateX(0) skewX(-15deg); opacity: 0; } 42% { opacity: .85; } 58%,100% { transform: translateX(520%) skewX(-15deg); opacity: 0; } }
+@keyframes coverPetal { 0% { opacity: 0; transform: translate3d(0,-12vh,0) rotate(0); } 22% { opacity: .8; } 100% { opacity: 0; transform: translate3d(30px,110vh,0) rotate(340deg); } }
+@keyframes dotPulse { 0%,100% { opacity: .25; transform: scale(.7); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes auraBloom { 0% { opacity: 0; transform: scale(.4); } 45% { opacity: .85; } 100% { opacity: 0; transform: scale(2.6); } }
+@keyframes scrollHint { 0% { transform: scaleY(0); transform-origin: top; opacity: 0; } 40% { opacity: 1; } 60% { transform: scaleY(1); transform-origin: top; } 100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; } }
+
+
+@utility font-display { font-family: var(--font-display); }
+@utility paper-texture {
+  background-color: var(--paper);
+  background-image: radial-gradient(circle at 15% 20%, color-mix(in oklab, var(--sky-soft) 65%, transparent), transparent 28%), radial-gradient(circle at 85% 55%, color-mix(in oklab, var(--peach-soft) 58%, transparent), transparent 26%);
+}
+@utility film-shadow { box-shadow: 0 24px 70px color-mix(in oklab, var(--ink) 15%, transparent); }
+@utility petal {
+  position: fixed;
+  top: -8vh;
+  width: 10px;
+  height: 14px;
+  border-radius: 80% 20% 70% 30%;
+  background: color-mix(in oklab, var(--peach) 75%, transparent);
+  animation: driftDown 13s linear infinite;
+  pointer-events: none;
+  z-index: 30;
+}
+@utility reveal-up { animation: letterIn .8s ease-out both; }
+
+@utility hero-photo {
+  animation: heroReveal 2.4s cubic-bezier(.2,.75,.2,1) both;
+  filter: saturate(.9) contrast(1.02);
+}
+
+@utility hero-vignette {
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--ink) 18%, transparent) 0%, transparent 34%, color-mix(in oklab, var(--ink) 52%, transparent) 68%, color-mix(in oklab, var(--ink) 88%, transparent) 100%);
+}
+
+@utility gallery-stage {
+  background-color: var(--sky-soft);
+  background-image: linear-gradient(to bottom, color-mix(in oklab, var(--paper) 65%, transparent), transparent 20%, transparent 80%, color-mix(in oklab, var(--paper) 45%, transparent));
+}
+
+@utility gallery-tile {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  touch-action: manipulation;
+}
+
+@utility invitation-cover {
+  perspective: 1200px;
+  background: radial-gradient(circle at 50% 38%, color-mix(in oklab, var(--secondary) 20%, var(--paper)), var(--paper) 62%);
+  &.is-opening { animation: coverFade 3.9s cubic-bezier(.4,0,.2,1) both; }
+  &.is-opening .envelope-scene { animation: envelopeAwaken .45s ease-out both; }
+  &.is-opening .envelope-back, &.is-opening .envelope-front { animation: envelopeSettle 3.1s .55s cubic-bezier(.2,.7,.25,1) both; }
+  &.is-opening .envelope-flap { animation: flapOpen .82s .18s cubic-bezier(.2,.7,.2,1) both; z-index: 15; }
+  &.is-opening .invitation-card { animation: cardRise 2.85s .72s cubic-bezier(.25,.72,.2,1) both; }
+  &.is-opening .wax-seal { animation: sealRelease .48s cubic-bezier(.2,.7,.2,1) both; }
+  &.is-opening .cover-aura { animation: auraBloom 1.2s 2.35s ease-out both; }
+  &.is-opening .open-label { opacity: 0; }
+  &.is-opening .cover-heading { animation: whisperAway .85s ease both; }
+  &.is-opening .card-glint { animation: none; }
+  &.is-opening .cover-petal { opacity: 0; transition: opacity .25s ease; }
+}
+
+@utility envelope-scene {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+@utility envelope-flap {
+  backface-visibility: hidden;
+  background: linear-gradient(165deg, color-mix(in oklab, var(--secondary) 92%, var(--paper)), color-mix(in oklab, var(--primary) 16%, var(--secondary)));
+  filter: drop-shadow(0 8px 8px color-mix(in oklab, var(--ink) 7%, transparent));
+  transition: transform 1.15s cubic-bezier(.2,.72,.15,1), z-index 0s 1.45s;
+}
+
+@utility invitation-card {
+  transform: rotate(-.5deg);
+  will-change: transform;
+}
+@utility cover-aura { opacity: 0; background: radial-gradient(circle, color-mix(in oklab, var(--secondary) 65%, transparent), transparent 62%); }
+@utility scroll-hint { & i { display: block; width: 1px; height: 100%; background: currentColor; animation: scrollHint 2.4s cubic-bezier(.65,0,.35,1) infinite; } }
+@utility reveal {
+  opacity: 0;
+  transform: translateY(34px) scale(.985);
+  filter: blur(8px);
+  transition: opacity 1s cubic-bezier(.2,.75,.2,1), transform 1s cubic-bezier(.2,.75,.2,1), filter 1s cubic-bezier(.2,.75,.2,1);
+  &.is-in { opacity: 1; transform: none; filter: none; }
+}
+@utility reveal-slow { transition-duration: 1.35s; }
+@utility story-photo { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+@utility wax-seal { transition: opacity .25s ease, transform .25s ease; }
+@utility open-label {
+  transition: opacity .3s ease;
+  & i { display: block; width: 4px; height: 4px; border-radius: 999px; background: var(--primary); animation: dotPulse 1.5s ease infinite; }
+  & i:nth-child(2) { animation-delay: .18s; }
+  & i:nth-child(3) { animation-delay: .36s; }
+}
+@utility cover-floor { background: linear-gradient(to top, color-mix(in oklab, var(--secondary) 22%, var(--paper)), transparent); clip-path: polygon(0 18%, 50% 0, 100% 18%, 100% 100%, 0 100%); }
+@utility cover-heading { color: var(--foreground); transition: opacity .3s ease; }
+@utility envelope-shell { background: color-mix(in oklab, var(--paper) 88%, var(--secondary)); }
+@utility wax-seal { background: linear-gradient(145deg, var(--secondary), var(--primary)); box-shadow: 0 9px 20px color-mix(in oklab, var(--primary) 35%, transparent), inset 0 -3px 6px color-mix(in oklab, var(--ink) 18%, transparent), inset 0 2px 4px color-mix(in oklab, var(--paper) 45%, transparent); }
+@utility card-photo { opacity: .92; }
+@utility card-glint { background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--paper) 90%, transparent), transparent); }
+@utility cover-petal { position: absolute; top: -8vh; width: 11px; height: 17px; border-radius: 80% 20% 70% 30%; background: var(--secondary); opacity: .7; animation: coverPetal 7s linear infinite; }
+@utility petal-one { left: 12%; animation-delay: 0s; }
+@utility petal-two { left: 38%; animation-delay: 1.6s; }
+@utility petal-three { left: 71%; animation-delay: .7s; }
+@utility petal-four { left: 89%; animation-delay: 2.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-cover *, .petal { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+}
+
+@utility gallery-sheen {
+  background: linear-gradient(to top, color-mix(in oklab, var(--ink) 28%, transparent), transparent 42%);
+  transition: background .4s ease;
+}
+
+@utility lightbox {
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: var(--paper); }
+}
+
+/* Refined closed-envelope composition: the card stays discreet until opened. */
+@utility envelope-liner {
+  background-color: color-mix(in oklab, var(--paper) 92%, var(--secondary));
+  background-image: repeating-linear-gradient(135deg, color-mix(in oklab, var(--secondary) 13%, transparent) 0 1px, transparent 1px 9px);
+}
+@utility envelope-left { background: color-mix(in oklab, var(--card) 96%, var(--secondary)); }
+@utility envelope-right { background: color-mix(in oklab, var(--secondary) 24%, var(--card)); }
+@utility envelope-pocket {
+  background: linear-gradient(155deg, color-mix(in oklab, var(--card) 97%, var(--secondary)), color-mix(in oklab, var(--secondary) 20%, var(--card)));
+  filter: drop-shadow(0 -1px 0 color-mix(in oklab, var(--primary) 12%, transparent));
+}
+@utility envelope-edge { background: color-mix(in oklab, var(--primary) 18%, transparent); }
