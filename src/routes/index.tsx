@@ -101,7 +101,7 @@ function WeddingInvitation() {
     if (opening) return;
     setOpening(true);
     try { await audioRef.current?.play(); setPlaying(true); } catch { setPlaying(false); }
-    window.setTimeout(() => setOpened(true), 3200);
+    window.setTimeout(() => setOpened(true), 3900);
   }
   async function toggleMusic() {
     if (!audioRef.current) return;
@@ -129,35 +129,36 @@ function WeddingInvitation() {
 
   return <main className="paper-texture min-h-screen text-foreground">
     <audio ref={audioRef} src={musicUrl} loop preload="metadata" />
-    {!opened && <div className={`invitation-cover fixed inset-0 z-50 grid place-items-center overflow-hidden px-6 ${opening ? "is-opening" : ""}`}>
-      <img aria-hidden src={img1} className="cover-photo absolute inset-0 h-full w-full object-cover object-[50%_32%]" alt="" />
-      <div aria-hidden className="cover-photo-shade absolute inset-0" />
+    {!opened && <div className={`invitation-cover fixed inset-0 z-50 grid place-items-center overflow-hidden px-5 ${opening ? "is-opening" : ""}`}>
       <div aria-hidden className="cover-floor absolute inset-x-0 bottom-0 h-[34%]" />
       <span aria-hidden className="cover-petal petal-one" /><span aria-hidden className="cover-petal petal-two" /><span aria-hidden className="cover-petal petal-three" /><span aria-hidden className="cover-petal petal-four" />
       <span aria-hidden className="cover-aura pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full" />
-      <p className="cover-whisper absolute top-[11%] text-center font-display text-[1.6rem] italic leading-[1.9]">Một lời hẹn<br/>đang đợi bàn tay bạn<br/>chạm vào…</p>
-      <Button type="button" variant="envelope" onClick={enterInvitation} aria-label="Mở thiệp cưới" className="envelope-scene relative mt-12 aspect-[1.28] h-auto w-full max-w-[360px] overflow-visible border-0 bg-transparent p-0 shadow-none hover:scale-100 sm:mt-8">
-        <span className="envelope-back absolute inset-x-0 bottom-0 z-10 block h-[88%] overflow-hidden film-shadow">
+      <div className="cover-heading absolute top-[9%] text-center">
+        <p className="text-[10px] uppercase tracking-[.3em] text-primary">Thiệp mời lễ thành hôn</p>
+        <p className="mt-2 font-display text-[1.65rem] italic leading-snug">Một lời hẹn dành riêng cho bạn</p>
+      </div>
+      <Button type="button" variant="envelope" onClick={enterInvitation} disabled={opening} aria-label="Mở thiệp cưới của Thảo My và Xuân Tú" className="envelope-scene relative mt-10 aspect-[1.36] h-auto w-full max-w-[390px] overflow-visible border-0 bg-transparent p-0 shadow-none hover:scale-100 disabled:opacity-100 sm:mt-16">
+        <span className="envelope-back absolute inset-x-0 bottom-0 z-10 block h-[78%] overflow-hidden film-shadow">
           <span className="envelope-liner absolute inset-0" />
           <span className="envelope-edge absolute inset-x-0 top-0 h-px" />
         </span>
-        <span className="invitation-card absolute inset-x-[8%] bottom-[4%] z-20 flex h-[calc(76%+11px)] flex-col items-center overflow-hidden border border-primary/15 bg-card px-5 pt-4 text-center shadow-xl">
+        <span className="invitation-card absolute inset-x-[8%] bottom-[4%] z-20 flex h-[108%] flex-col items-center overflow-hidden border border-primary/15 bg-card px-5 py-5 text-center shadow-xl">
           <span className="card-glint absolute inset-y-0 -left-1/3 w-1/3" />
           <span className="text-[8px] uppercase tracking-[.24em] text-muted-foreground">Trân trọng báo tin vui</span>
-          <span className="mt-3 font-display text-[2.35rem] leading-none">Thảo My</span>
-          <span className="my-1 font-display text-xl italic text-accent">&</span>
-          <span className="font-display text-[2.35rem] leading-none">Xuân Tú</span>
-          <span className="mt-4 h-px w-9 bg-primary/35" />
-          <span className="mt-3 text-[9px] tracking-[.22em] text-muted-foreground">03 · 10 · 2026</span>
-          <span className="card-photo absolute inset-x-3 bottom-3 top-[55%] overflow-hidden"><img src={img1} alt="" className="h-full w-full object-cover object-[50%_27%]" /></span>
+          <span className="mt-2 font-display text-[2.2rem] leading-none">Thảo My <i className="mx-1 text-[1.25rem] text-accent">&</i> Xuân Tú</span>
+          <span className="mt-3 h-px w-10 bg-primary/35" />
+          <span className="mt-3 text-[10px] font-semibold uppercase tracking-[.2em] text-primary">10:00 · Thứ Bảy</span>
+          <span className="mt-1 font-display text-xl">03 · 10 · 2026</span>
+          <span className="mt-2 max-w-[15rem] text-[9px] leading-[1.55] text-muted-foreground">Tư gia nhà trai · Chợ Gồ, Thôn Thanh Cù, Xã Hiệp Cường, Tỉnh Hưng Yên</span>
+          <span className="card-photo absolute inset-x-3 bottom-3 h-[28%] overflow-hidden"><img src={img1} alt="" className="h-full w-full object-cover object-[50%_27%]" /></span>
         </span>
-        <span className="envelope-front absolute inset-x-0 bottom-0 z-30 block h-[88%] overflow-hidden">
+        <span className="envelope-front absolute inset-x-0 bottom-0 z-30 block h-[78%] overflow-hidden">
           <span className="envelope-left absolute inset-y-0 left-0 w-[53%] [clip-path:polygon(0_0,100%_52%,0_100%)]" />
           <span className="envelope-right absolute inset-y-0 right-0 w-[53%] [clip-path:polygon(100%_0,0_52%,100%_100%)]" />
           <span className="envelope-pocket absolute inset-x-0 bottom-0 h-[64%] [clip-path:polygon(0_100%,0_36%,50%_0,100%_36%,100%_100%)]" />
         </span>
-        <span className="envelope-flap absolute inset-x-0 top-[12%] z-40 block h-[33%] origin-top [clip-path:polygon(0_0,100%_0,50%_100%)]" />
-        <span className="wax-seal absolute left-1/2 top-[45%] z-50 grid h-[4.35rem] w-[4.35rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full font-display text-xl italic text-primary-foreground">M · T<span className="seal-ring absolute inset-1 rounded-full border border-primary-foreground/30" /><span className="seal-dot absolute inset-[.65rem] rounded-full border border-primary-foreground/15" /></span>
+        <span className="envelope-flap absolute inset-x-0 top-[22%] z-40 block h-[31%] origin-top [clip-path:polygon(0_0,100%_0,50%_100%)]" />
+        <span className="wax-seal absolute left-1/2 top-[53%] z-50 grid h-[4.35rem] w-[4.35rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full font-display text-xl italic text-primary-foreground">M · T<span className="seal-ring absolute inset-1 rounded-full border border-primary-foreground/30" /><span className="seal-dot absolute inset-[.65rem] rounded-full border border-primary-foreground/15" /></span>
         <span className="open-label absolute left-1/2 top-[calc(100%+1.3rem)] z-40 -translate-x-1/2 whitespace-nowrap text-[11px] uppercase tracking-[.22em] text-foreground">Chạm để mở<span className="mt-3 flex justify-center gap-1.5"><i/><i/><i/></span></span>
       </Button>
     </div>}

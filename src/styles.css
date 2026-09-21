@@ -179,31 +179,28 @@
 }
 
 @keyframes coverFade {
-  0%, 91% { opacity: 1; }
+  0%, 88% { opacity: 1; }
   100% { opacity: 0; visibility: hidden; }
 }
 
 @keyframes cardRise {
-  0%, 9% { transform: translate3d(0,0,0) rotate(-.35deg); }
-  17% { transform: translate3d(0,1.5%,0) rotate(-.55deg); }
-  61% { transform: translate3d(0,-50%,0) rotate(.35deg); }
-  72% { transform: translate3d(0,-54%,0) rotate(-.12deg); }
-  82% { transform: translate3d(0,-53%,0) rotate(0deg); opacity: 1; }
-  100% { transform: translate3d(0,-53%,0) rotate(0deg); opacity: 0; }
+  0%, 8% { transform: translate3d(0,0,0) rotate(-.35deg); }
+  15% { transform: translate3d(0,1%,0) rotate(-.45deg); }
+  58% { transform: translate3d(0,-61%,0) rotate(.2deg); }
+  72%, 88% { transform: translate3d(0,-64%,0) rotate(0deg) scale(1.015); opacity: 1; }
+  100% { transform: translate3d(0,-64%,0) rotate(0deg) scale(1.015); opacity: 0; }
 }
 
 @keyframes envelopeSettle {
-  0%, 16% { transform: translateY(0); }
-  26% { transform: translateY(2px); }
-  58% { transform: translateY(7px); }
-  82% { transform: translateY(8px); opacity: 1; }
-  100% { transform: translateY(8px); opacity: 0; }
+  0%, 72% { transform: translateY(0); opacity: 1; }
+  88% { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
 }
 
 @keyframes flapOpen {
-  0%, 10% { transform: rotateX(0deg); }
-  58% { transform: rotateX(172deg); }
-  76%, 100% { transform: rotateX(180deg); }
+  0%, 8% { transform: rotateX(0deg); }
+  68% { transform: rotateX(172deg); }
+  100% { transform: rotateX(180deg); }
 }
 
 @keyframes sealRelease {
@@ -268,17 +265,15 @@
 @utility invitation-cover {
   perspective: 1200px;
   background: radial-gradient(circle at 50% 38%, color-mix(in oklab, var(--secondary) 20%, var(--paper)), var(--paper) 62%);
-  &.is-opening { animation: coverFade 3.2s cubic-bezier(.4,0,.2,1) both; }
+  &.is-opening { animation: coverFade 3.9s cubic-bezier(.4,0,.2,1) both; }
   &.is-opening .envelope-scene { animation: envelopeAwaken .45s ease-out both; }
-  &.is-opening .envelope-back, &.is-opening .envelope-front { animation: envelopeSettle 2.45s .55s cubic-bezier(.2,.7,.25,1) both; }
-  &.is-opening .envelope-flap { animation: flapOpen .9s .18s cubic-bezier(.2,.7,.2,1) both; z-index: 5; }
-  &.is-opening .invitation-card { animation: cardRise 2.25s .72s cubic-bezier(.25,.72,.2,1) both; }
+  &.is-opening .envelope-back, &.is-opening .envelope-front { animation: envelopeSettle 3.1s .55s cubic-bezier(.2,.7,.25,1) both; }
+  &.is-opening .envelope-flap { animation: flapOpen .82s .18s cubic-bezier(.2,.7,.2,1) both; z-index: 15; }
+  &.is-opening .invitation-card { animation: cardRise 2.85s .72s cubic-bezier(.25,.72,.2,1) both; }
   &.is-opening .wax-seal { animation: sealRelease .48s cubic-bezier(.2,.7,.2,1) both; }
-  &.is-opening .cover-aura { animation: auraBloom 1.2s 1.9s ease-out both; }
+  &.is-opening .cover-aura { animation: auraBloom 1.2s 2.35s ease-out both; }
   &.is-opening .open-label { opacity: 0; }
-  &.is-opening .cover-photo { animation: photoReveal 3.2s cubic-bezier(.2,.75,.2,1) both; }
-  &.is-opening .cover-photo-shade { animation: shadeReveal 3.2s ease both; }
-  &.is-opening .cover-whisper { animation: whisperAway 1.2s ease both; }
+  &.is-opening .cover-heading { animation: whisperAway .85s ease both; }
   &.is-opening .card-glint { animation: none; }
   &.is-opening .cover-petal { opacity: 0; transition: opacity .25s ease; }
 }
@@ -318,9 +313,7 @@
   & i:nth-child(3) { animation-delay: .36s; }
 }
 @utility cover-floor { background: linear-gradient(to top, color-mix(in oklab, var(--secondary) 22%, var(--paper)), transparent); clip-path: polygon(0 18%, 50% 0, 100% 18%, 100% 100%, 0 100%); }
-@utility cover-photo { opacity: 0; }
-@utility cover-photo-shade { opacity: 0; background: linear-gradient(to bottom, color-mix(in oklab, var(--ink) 10%, transparent), transparent 36%, color-mix(in oklab, var(--ink) 65%, transparent)); }
-@utility cover-whisper { color: var(--foreground); transition: opacity .3s ease; }
+@utility cover-heading { color: var(--foreground); transition: opacity .3s ease; }
 @utility envelope-shell { background: color-mix(in oklab, var(--paper) 88%, var(--secondary)); }
 @utility wax-seal { background: linear-gradient(145deg, var(--secondary), var(--primary)); box-shadow: 0 9px 20px color-mix(in oklab, var(--primary) 35%, transparent), inset 0 -3px 6px color-mix(in oklab, var(--ink) 18%, transparent), inset 0 2px 4px color-mix(in oklab, var(--paper) 45%, transparent); }
 @utility card-photo { opacity: .92; }
