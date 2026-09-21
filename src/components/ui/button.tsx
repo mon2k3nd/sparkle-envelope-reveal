@@ -10,6 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        hero: "border border-primary-foreground/35 bg-primary-foreground/10 text-primary-foreground shadow-lg backdrop-blur-md hover:bg-primary-foreground/20",
         glass: "rounded-full border border-primary-foreground/20 bg-foreground/45 text-primary-foreground shadow-lg backdrop-blur-md hover:bg-foreground/60",
         envelope: "rounded-md border border-primary/25 bg-card text-foreground film-shadow transition-transform hover:scale-[1.02]",
         image: "rounded-none bg-transparent text-primary-foreground shadow-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
