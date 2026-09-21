@@ -149,7 +149,7 @@ function WeddingInvitation() {
           <span className="mt-3 h-px w-10 bg-primary/35" />
           <span className="mt-3 text-[10px] font-semibold uppercase tracking-[.2em] text-primary">10:00 · Thứ Bảy</span>
           <span className="mt-1 font-display text-xl">03 · 10 · 2026</span>
-          <span className="mt-2 max-w-[15rem] text-[9px] leading-[1.55] text-muted-foreground">Tư gia nhà trai · Chợ Gồ, Thôn Thanh Cù, Xã Hiệp Cường, Tỉnh Hưng Yên</span>
+          <span className="mt-2 w-full max-w-[16rem] whitespace-normal text-[9px] leading-[1.55] text-muted-foreground">Tư gia nhà trai · Chợ Gồ, Thôn Thanh Cù,<br/>Xã Hiệp Cường, Tỉnh Hưng Yên</span>
           <span className="card-photo absolute inset-x-3 bottom-3 h-[28%] overflow-hidden"><img src={img1} alt="" className="h-full w-full object-cover object-[50%_27%]" /></span>
         </span>
         <span className="envelope-front absolute inset-x-0 bottom-0 z-30 block h-[78%] overflow-hidden">
