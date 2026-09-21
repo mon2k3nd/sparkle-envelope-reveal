@@ -219,16 +219,13 @@
 @keyframes dotPulse { 0%,100% { opacity: .25; transform: scale(.7); } 50% { opacity: 1; transform: scale(1); } }
 @keyframes auraBloom { 0% { opacity: 0; transform: scale(.4); } 45% { opacity: .85; } 100% { opacity: 0; transform: scale(2.6); } }
 @keyframes scrollHint { 0% { transform: scaleY(0); transform-origin: top; opacity: 0; } 40% { opacity: 1; } 60% { transform: scaleY(1); transform-origin: top; } 100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; } }
-@keyframes introPosterAway { 0% { opacity: 1; transform: scale(1); filter: blur(0); } 10%,100% { opacity: 0; transform: scale(1.08); filter: blur(8px); } }
-@keyframes storyOne { 0%,2% { opacity:0; transform:translateY(18px); filter:blur(8px); } 5%,13% { opacity:1; transform:none; filter:none; } 17%,100% { opacity:0; transform:translateY(-14px); filter:blur(6px); } }
-@keyframes storyTwo { 0%,19% { opacity:0; transform:translateY(18px); filter:blur(8px); } 23%,32% { opacity:1; transform:none; filter:none; } 36%,100% { opacity:0; transform:translateY(-14px); filter:blur(6px); } }
-@keyframes storyThree { 0%,39% { opacity:0; transform:translateY(18px); filter:blur(8px); } 43%,51% { opacity:1; transform:none; filter:none; } 55%,100% { opacity:0; transform:translateY(-14px); filter:blur(6px); } }
-@keyframes storyFour { 0%,58% { opacity:0; transform:translateY(18px); filter:blur(8px); } 62%,70% { opacity:1; transform:none; filter:none; } 74%,100% { opacity:0; transform:translateY(-14px); filter:blur(6px); } }
-@keyframes featherOne { 0%,20% { opacity:0; transform:translate3d(-65vw,18vh,0) rotate(-18deg) scale(.65); } 26%,38% { opacity:.9; } 45%,100% { opacity:0; transform:translate3d(78vw,-22vh,0) rotate(12deg) scale(1); } }
-@keyframes featherTwo { 0%,41% { opacity:0; transform:translate3d(72vw,-15vh,0) rotate(16deg) scale(.7); } 47%,58% { opacity:.88; } 65%,100% { opacity:0; transform:translate3d(-76vw,18vh,0) rotate(-10deg) scale(1.05); } }
-@keyframes featherThree { 0%,61% { opacity:0; transform:translate3d(-55vw,26vh,0) rotate(-13deg) scale(.72); } 67%,76% { opacity:.9; } 82%,100% { opacity:0; transform:translate3d(65vw,-18vh,0) rotate(9deg) scale(1.08); } }
-@keyframes finaleReveal { 0%,76% { opacity:0; clip-path:circle(0% at 50% 54%); transform:scale(1.12); } 88% { opacity:1; clip-path:circle(76% at 50% 54%); } 100% { opacity:1; clip-path:circle(100% at 50% 54%); transform:scale(1); } }
-@keyframes finaleTitle { 0%,88% { opacity:0; transform:translateY(20px); } 96%,100% { opacity:1; transform:none; } }
+@keyframes introPosterAway { 0% { opacity: 1; transform: scale(1); filter: blur(0); } 7%,100% { opacity: 0; transform: scale(1.06); filter: blur(7px); } }
+@keyframes typeCharacter { from { opacity:0; filter:blur(3px); transform:translateY(4px); } to { opacity:1; filter:none; transform:none; } }
+@keyframes storyComplete { 0%,72% { opacity:1; transform:scale(1); filter:none; } 82%,100% { opacity:0; transform:scale(1.025); filter:blur(10px); } }
+@keyframes caretTravel { 0%,74% { opacity:1; } 76%,100% { opacity:0; } }
+@keyframes caretBlink { 0%,48% { opacity:1; } 49%,100% { opacity:0; } }
+@keyframes finaleReveal { 0%,73% { opacity:0; transform:scale(1.035); } 86%,100% { opacity:1; transform:scale(1); } }
+@keyframes finaleTitle { 0%,82% { opacity:0; transform:translateY(18px); } 94%,100% { opacity:1; transform:none; } }
 
 
 @utility font-display { font-family: var(--font-display); }
@@ -239,25 +236,23 @@
 @utility film-shadow { box-shadow: 0 24px 70px color-mix(in oklab, var(--ink) 15%, transparent); }
 @utility cinema-intro {
   isolation: isolate;
-  &.is-playing .intro-poster { animation: introPosterAway 16.8s ease both; }
-  &.is-playing .story-one { animation: storyOne 16.8s ease both; }
-  &.is-playing .story-two { animation: storyTwo 16.8s ease both; }
-  &.is-playing .story-three { animation: storyThree 16.8s ease both; }
-  &.is-playing .story-four { animation: storyFour 16.8s ease both; }
-  &.is-playing .flying-one { animation: featherOne 16.8s cubic-bezier(.34,.02,.28,1) both; }
-  &.is-playing .flying-two { animation: featherTwo 16.8s cubic-bezier(.34,.02,.28,1) both; }
-  &.is-playing .flying-three { animation: featherThree 16.8s cubic-bezier(.34,.02,.28,1) both; }
-  &.is-playing .intro-finale { animation: finaleReveal 16.8s cubic-bezier(.2,.72,.2,1) both; }
-  &.is-playing .intro-finale > div:last-child { animation: finaleTitle 16.8s ease both; }
+  &.is-playing .intro-poster { animation: introPosterAway 17s ease both; }
+  &.is-playing .typewriter-story { animation: storyComplete 17s ease both; }
+  &.is-playing .typewriter-character { animation: typeCharacter .12s ease-out both; }
+  &.is-playing .typewriter-caret { animation: caretTravel 17s linear both, caretBlink .72s steps(1,end) infinite; }
+  &.is-playing .intro-finale { animation: finaleReveal 17s cubic-bezier(.2,.72,.2,1) both; }
+  &.is-playing .intro-finale > div:last-child { animation: finaleTitle 17s ease both; }
 }
 @utility intro-poster { filter: saturate(.78) contrast(1.06); }
 @utility intro-shade { background: linear-gradient(to bottom, color-mix(in oklab, var(--ink) 20%, transparent), transparent 34%, color-mix(in oklab, var(--ink) 92%, transparent)); }
 @utility intro-grain { opacity:.13; background-image:radial-gradient(circle at 20% 30%,var(--paper) 0 1px,transparent 1px),radial-gradient(circle at 75% 65%,var(--paper) 0 1px,transparent 1px); background-size:7px 7px,11px 11px; }
 @utility intro-story { background: radial-gradient(circle at center,color-mix(in oklab,var(--primary) 18%,var(--foreground)),var(--foreground) 72%); }
-@utility story-line { position:absolute; max-width:42rem; opacity:0; }
-@utility flying-photo { position:absolute; left:50%; top:50%; width:min(54vw,310px); aspect-ratio:3/4; overflow:hidden; opacity:0; box-shadow:0 28px 80px color-mix(in oklab,var(--foreground) 72%,transparent); border:1px solid color-mix(in oklab,var(--paper) 50%,transparent); & img { width:100%; height:100%; object-fit:cover; } }
+@utility typewriter-story { position:relative; }
+@utility typewriter-line { min-height:1.55em; text-wrap:balance; }
+@utility typewriter-character { display:inline-block; opacity:0; }
+@utility typewriter-caret { display:inline-block; width:1px; height:1.15em; margin-left:.16em; vertical-align:-.16em; background:var(--secondary); }
 @utility intro-finale { opacity:0; }
-@utility intro-finale-shade { background:linear-gradient(to bottom,transparent 48%,color-mix(in oklab,var(--foreground) 76%,transparent)); }
+@utility intro-finale-shade { background:linear-gradient(to bottom,color-mix(in oklab,var(--ink) 18%,transparent) 0%,transparent 34%,color-mix(in oklab,var(--ink) 52%,transparent) 68%,color-mix(in oklab,var(--ink) 88%,transparent) 100%); }
 @utility intro-skip { letter-spacing:0; }
 @utility petal {
   position: fixed;
